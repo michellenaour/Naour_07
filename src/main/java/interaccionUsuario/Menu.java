@@ -1,9 +1,11 @@
 package interaccionUsuario;
 
+import contextoProblema.LocalDeComida;
 import contextoProblema.TipoPlato;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
 
 public class Menu {
 	static Scanner teclado=new Scanner(System.in);
@@ -51,18 +53,15 @@ public class Menu {
 	}
 
 	public String  ingresarTipoPlato(){
-		String TPlato="";
-		while (TPlato.length()==0){
-			 TPlato=Sca
-		}
-		return TPlato;
+
 	}
 
 	public void mostarBoletasHistoricas() {
+		for( int i=0; i< LocalDeComida.boletas.size();i++){
+			String path = "boleta"+ i+".csv";
 
+		}
 	}
-
-
 
 	private static int leerOpcion(){
 		int opcion=0;
@@ -107,12 +106,11 @@ public class Menu {
 	private static double[] EstablecerPrecios(){
 		double[] precios = new double[5];
 		System.out.println("Antes de empezar las ventas necesita establecer los precios de sus Productos");
-		precios[0]=leerDouble("Ingrese el precio de ");
-		precios[1]=leerDouble("Ingrese el precio de ");
-		precios[2]=leerDouble("Ingrese el precio de ");
-		precios[3]=leerDouble("Ingrese el precio de ");
-		precios[4]=leerDouble("Ingrese el precio de ");
-
+		precios[0]=leerDouble("Ingrese el precio de empanadas");
+		precios[1]=leerDouble("Ingrese el precio de papas fritas");
+		precios[2]=leerDouble("Ingrese el precio de churros ");
+		precios[3]=leerDouble("Ingrese el precio de pizza");
+		precios[4]=leerDouble("Ingrese el precio de humitas");
 
 		return EstablecerPrecios();
 	}

@@ -1,13 +1,16 @@
 package contextoProblema;
 
+import datos.GestorArchivo;
+
 import java.util.*;
 
 public class LocalDeComida {
 
-	ArrayList<Plato> consumo=new ArrayList<>();
-	ArrayList<Boleta> boletas=new ArrayList<>();
+	private ArrayList<Plato> consumo=new ArrayList<>();
+	public static ArrayList<Boleta> boletas=new ArrayList<>();
 
 	public void llenarprecios(){}
+
 	public void nuevaVenta() {
 		agregarPlatos();
 		Boleta boleta=new Boleta();
@@ -31,8 +34,8 @@ public class LocalDeComida {
 
 	}
 
-	public void mostarBoleta() {
-
+	public String mostarBoleta() {
+		return GestorArchivo.LeerArchivo("boleta"+boleta.)
 	}
 
 	public double calcularTotal() {
@@ -47,6 +50,14 @@ public class LocalDeComida {
 
 	public void operation() {
 
+	}
+
+	public void mostrarBoletas(){
+
+		for( int i=0; i< LocalDeComida.boletas.size();i++){
+			String path = "boleta"+ (i+1)+".csv";
+			GestorArchivo.LeerArchivo(path);
+		}
 	}
 
 }

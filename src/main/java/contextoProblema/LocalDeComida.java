@@ -1,7 +1,9 @@
 package contextoProblema;
 
 import datos.GestorArchivo;
+import interaccionUsuario.Menu;
 
+import java.io.IOException;
 import java.util.*;
 
 public class LocalDeComida {
@@ -11,7 +13,7 @@ public class LocalDeComida {
 
 	public void llenarprecios(){}
 
-	public void nuevaVenta() {
+	public void nuevaVenta() throws IOException {
 		agregarPlatos();
 		Boleta boleta=new Boleta();
 		boleta.setFecha(Calendar.getInstance());
@@ -19,23 +21,22 @@ public class LocalDeComida {
 		boleta.setConsumo(consumo);
 		boleta.setID(boletas.size()+1);
 		boletas.add(boleta);
+		GestorArchivo.crearNuevoArchivo(boleta.getArchivo());
+		GestorArchivo.guardarBoleta(boleta,boleta.getArchivo());
 	}
 
-	public void craerBoleta() {
-
-	}
 	private void agregarPlatos(){
 		boolean respuesta=false;
 		while (!respuesta){
 			Plato plato =new Plato();
-			plato.setTipoPlato(Menu.in);
+			plato.setTipoPlato(Menu.ingresarTipoPlatp());
 			respuesta=SeguirConsumiendo();
 		}
 
 	}
 
-	public String mostarBoleta() {
-		return GestorArchivo.LeerArchivo("boleta"+boleta.)
+	public String mostarBoleta(String path) {
+		return GestorArchivo.LeerArchivo(path);
 	}
 
 	public double calcularTotal() {
@@ -46,10 +47,6 @@ public class LocalDeComida {
 			total = total + plato.getPrecio();
 		}
 		return total;
-	}
-
-	public void operation() {
-
 	}
 
 	public void mostrarBoletas(){

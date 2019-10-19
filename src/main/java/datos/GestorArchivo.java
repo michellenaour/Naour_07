@@ -29,7 +29,7 @@ public class GestorArchivo {
 
 
         try (FileWriter file = new FileWriter(nombreArchivo)) {
-            file.write(boleta.toString());
+            file.write(boleta.atexto());
             file.flush();
 
         } catch (IOException e) {

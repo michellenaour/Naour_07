@@ -13,3 +13,4 @@ public enum TipoPlato {
 
 	public String getTipoPlato(){return tipoPlato;}
 }
+

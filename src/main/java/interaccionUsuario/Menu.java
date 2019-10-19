@@ -18,28 +18,26 @@ public class Menu {
 	}
 
 	public void mostrarMenu() {
-
-	}
-
-	public void IngresarPrecios() {
-
+		System.out.println("--------------Menu--------------");
+		System.out.println("  ( 1 ).  Crear una nueva Boleta (nueva venta)");
+		System.out.println("  ( 2 ).  Ver todas las Boletas emitidas");
+		System.out.println("  ( 3 ).  Salir");
+		System.out.println("  Ingrese una de las opciones anteriores:");
 	}
 
 	public void seleccionMenu(int op) {
 		switch (op) {
 			case 1:
+				System.out.println("  ( 1 ).  Crear una nueva Boleta (nueva venta)");
 
 				menuPrincipal();
 				break;
 			case 2:
-
+				System.out.println("  ( 2 ).  Ver todas las Boletas emitidas");
 				menuPrincipal();
 				break;
 			case 3:
-
-				menuPrincipal();
-				break;
-			case 4:
+				System.out.println("  ( 3 ).  Salir");
 				System.out.println("Que tenga un buen día.");
 				break;
 			default:
@@ -48,12 +46,25 @@ public class Menu {
 		}
 	}
 
-	public void nuevaVenta() {
 
+	public static TipoPlato ingresarTipoPlatp(){
+		String Tplato="";
+		boolean flag = false;
+		while (!flag){
+			Tplato=teclado.next();
+			flag=validarTipoPlato(Tplato);
+			if (!flag){System.out.println("Error! el plato que ingresó no se encuentra en el menú");}
+		}
+
+		return TipoPlato.valueOf(Tplato);
 	}
 
-	public String  ingresarTipoPlato(){
-
+	private static boolean validarTipoPlato(String tp){
+		TipoPlato[] tipos= TipoPlato.values();
+		for(int i=0; i<tipos.length;i++){
+			if(tipos[i].getTipoPlato().equals(tp)){return true;}
+		}
+		return false;
 	}
 
 	public void mostarBoletasHistoricas() {
@@ -62,7 +73,6 @@ public class Menu {
 
 		}
 	}
-
 	private static int leerOpcion(){
 		int opcion=0;
 		boolean flag = false;

@@ -1,6 +1,7 @@
 package interaccionUsuario;
 
 import contextoProblema.LocalDeComida;
+import contextoProblema.Plato;
 import contextoProblema.TipoPlato;
 
 import java.io.IOException;
@@ -11,14 +12,14 @@ import java.util.Scanner;
 public class Menu {
 	static Scanner teclado=new Scanner(System.in);
 
-	public void menuPrincipal() {
+	public static void menuPrincipal() throws IOException {
 		EstablecerPrecios();
 		mostrarMenu();
 		int opcion = leerOpcion();
 		seleccionMenu(opcion);
 	}
 
-	public void mostrarMenu() {
+	private static void mostrarMenu() {
 		System.out.println("--------------Menu--------------");
 		System.out.println("  ( 1 ).  Crear una nueva Boleta (nueva venta)");
 		System.out.println("  ( 2 ).  Ver todas las Boletas emitidas");
@@ -26,7 +27,7 @@ public class Menu {
 		System.out.println("  Ingrese una de las opciones anteriores:");
 	}
 
-	public void seleccionMenu(int op) throws IOException {
+	private static void seleccionMenu(int op) throws IOException {
 		switch (op) {
 			case 1:
 				System.out.println("  ( 1 ).  Crear una nueva Boleta (nueva venta)");
@@ -35,7 +36,7 @@ public class Menu {
 				break;
 			case 2:
 				System.out.println("  ( 2 ).  Ver todas las Boletas emitidas");
-				LocalDeComida.mostrarBoletas();
+				mostarBoletasHistoricas();
 				menuPrincipal();
 				break;
 			case 3:
@@ -48,11 +49,11 @@ public class Menu {
 		}
 	}
 
-
-	public static TipoPlato ingresarTipoPlatp(){
+	public static TipoPlato ingresarTipoPlato(){
 		String Tplato="";
 		boolean flag = false;
 		while (!flag){
+		    System.out.println("Ingrese el Plato");
 			Tplato=teclado.next();
 			flag=validarTipoPlato(Tplato);
 			if (!flag){System.out.println("Error! el plato que ingresó no se encuentra en el menú");}
@@ -69,7 +70,7 @@ public class Menu {
 		return false;
 	}
 
-	public void mostarBoletasHistoricas() {
+	private static void mostarBoletasHistoricas() {
 		System.out.println(LocalDeComida.mostrarBoletas());
 	}
 
@@ -111,15 +112,38 @@ public class Menu {
 		return number;
 
 	}
-	private static double[] EstablecerPrecios(){
-		double[] precios = new double[5];
-		System.out.println("Antes de empezar las ventas necesita establecer los precios de sus Productos");
-		precios[0]=leerDouble("Ingrese el precio de empanadas");
-		precios[1]=leerDouble("Ingrese el precio de papas fritas");
-		precios[2]=leerDouble("Ingrese el precio de churros ");
-		precios[3]=leerDouble("Ingrese el precio de pizza");
-		precios[4]=leerDouble("Ingrese el precio de humitas");
 
-		return EstablecerPrecios();
+	private static void EstablecerPrecios(){
+		System.out.println("Antes de empezar las ventas necesita establecer los precios de sus Productos");
+		Plato.precios.put(TipoPlato.EMPANADA,leerDouble("Ingrese el precio de empanadas"));
+        Plato.precios.put(TipoPlato.PAPAS,leerDouble("Ingrese el precio de papas fritas"));
+        Plato.precios.put(TipoPlato.CHURROS,leerDouble("Ingrese el precio de  churros"));
+        Plato.precios.put(TipoPlato.PIZZA,leerDouble("Ingrese el precio de pizza"));
+        Plato.precios.put(TipoPlato.HUMITA,leerDouble("Ingrese el precio de humitas"));
 	}
+
+	public static boolean agregarNuevoProducto(){
+	    String respuesta= leerRespuesta();
+	    if(respuesta.equals("si")|| respuesta.equals("SI")||respuesta.equals("Si")){
+	        return true;
+        }
+	    return false;
+    }
+
+    private static String leerRespuesta(){
+	    String res="";
+	    boolean flag=false;
+	    while (!flag){
+	        System.out.println("¿Agregar otro producto? Ingrese si para agregar y no para emitir la boleta. ");
+	        res=teclado.next();
+	        flag=validarRespuesta(res);
+        }
+	    return res;
+    }
+
+    private static boolean validarRespuesta(String res){
+	    if(res.equals("si")||res.equals("SI")||res.equals("Si")||res.equals("NO")||res.equals("no")||res.equals("No")){return  true;}
+	    return false;
+    }
+
 }

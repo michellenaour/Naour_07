@@ -1,20 +1,21 @@
 package contextoProblema;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Hashtable;
 
 public class Plato {
 
 	private TipoPlato tipoPlato;
 	private double precio;
-	private double[] precios = {0,0,0,0,0};
+	public static Dictionary precios = new Hashtable();
 
 	public Plato(){
 	}
 
-	public Plato(TipoPlato tipoPlato){
+	public Plato(TipoPlato tipoPlato,double precio){
 		this.tipoPlato = tipoPlato;
-		this.precio =precio;
-
+		this.precio=precio;
 	}
 
 	public TipoPlato getTipoPlato() {

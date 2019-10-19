@@ -26,7 +26,7 @@ public class LocalDeComida {
 		return textoBoletas;
 	}
 
-	private Boleta crearNuevaBoleta(ArrayList<Plato> consumo){
+	private static Boleta crearNuevaBoleta(ArrayList<Plato> consumo){
 		Boleta boleta=new Boleta();
 		boleta.setID(boletas.size()+1);
 		boleta.setFecha(Calendar.getInstance());
@@ -37,23 +37,23 @@ public class LocalDeComida {
 		return boleta;
 	}
 
-	private void guardarBoletaEnArchivo(String path, Boleta boleta) throws IOException {
+	private static void guardarBoletaEnArchivo(String path, Boleta boleta) throws IOException {
 		GestorArchivo.crearNuevoArchivo(boleta.getArchivo());
 		GestorArchivo.guardarBoleta(boleta,boleta.getArchivo());
 	}
 
-	private String crearNuevoPath(int ID){
+	private static String crearNuevoPath(int ID){
 		return "boleta"+ID+".csv";
 	}
 
-	private ArrayList<Plato> agregarPlatos(){
+	private static ArrayList<Plato> agregarPlatos(){
 		ArrayList<Plato> consumo=new ArrayList<>();
 		boolean respuesta=false;
 		while (!respuesta){
 			Plato plato =new Plato();
-			plato.setTipoPlato(Menu.ingresarTipoPlatp());
-			plato.setPrecio(hacerAlgoAca);
-			respuesta=SeguirConsumiendo();
+			plato.setTipoPlato(Menu.ingresarTipoPlato());
+			plato.setPrecio(100);
+			respuesta=Menu.agregarNuevoProducto();
 		}
 		return consumo;
 	}
@@ -62,7 +62,7 @@ public class LocalDeComida {
 		return GestorArchivo.LeerArchivo(path);
 	}
 
-	private double calcularTotal(ArrayList<Plato> consumo) {
+	private static double calcularTotal(ArrayList<Plato> consumo) {
 		double total = 0;
 		Plato plato = new Plato();
 		for (int i = 0; i < consumo.size(); i++) {

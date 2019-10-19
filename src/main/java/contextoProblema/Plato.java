@@ -11,7 +11,7 @@ public class Plato {
 	public Plato(){
 	}
 
-	public Plato(TipoPlato tipoPlato, double precio){
+	public Plato(TipoPlato tipoPlato){
 		this.tipoPlato = tipoPlato;
 		this.precio =precio;
 

@@ -3,6 +3,7 @@ package interaccionUsuario;
 import contextoProblema.LocalDeComida;
 import contextoProblema.TipoPlato;
 
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -25,15 +26,16 @@ public class Menu {
 		System.out.println("  Ingrese una de las opciones anteriores:");
 	}
 
-	public void seleccionMenu(int op) {
+	public void seleccionMenu(int op) throws IOException {
 		switch (op) {
 			case 1:
 				System.out.println("  ( 1 ).  Crear una nueva Boleta (nueva venta)");
-
+				LocalDeComida.nuevaVenta();
 				menuPrincipal();
 				break;
 			case 2:
 				System.out.println("  ( 2 ).  Ver todas las Boletas emitidas");
+				LocalDeComida.mostrarBoletas();
 				menuPrincipal();
 				break;
 			case 3:
@@ -68,23 +70,19 @@ public class Menu {
 	}
 
 	public void mostarBoletasHistoricas() {
-		for( int i=0; i< LocalDeComida.boletas.size();i++){
-			String path = "boleta"+ i+".csv";
-
-		}
+		System.out.println(LocalDeComida.mostrarBoletas());
 	}
+
 	private static int leerOpcion(){
 		int opcion=0;
 		boolean flag = false;
-
 		while (flag==false){
 			opcion=leerInt(" ");
-			if(opcion>=1 && opcion<=4){
+			if(opcion>=1 && opcion<=3){
 				flag=true;
 			}
-			else{System.out.println("error! las opciones diponibles son: 1, 2, 3 y 4");}
+			else{System.out.println("error! las opciones diponibles son: 1, 2 y 3");}
 		}
-
 		return opcion;
 	}
 	private static int leerInt(String mensaje){

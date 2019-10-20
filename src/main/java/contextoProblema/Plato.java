@@ -8,7 +8,6 @@ public class Plato {
 
 	private TipoPlato tipoPlato;
 	private double precio;
-	public static Dictionary precios = new Hashtable();
 
 	public Plato(){
 	}

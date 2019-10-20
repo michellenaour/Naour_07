@@ -115,11 +115,11 @@ public class Menu {
 
 	private static void EstablecerPrecios(){
 		System.out.println("Antes de empezar las ventas necesita establecer los precios de sus Productos");
-		Plato.precios.put(TipoPlato.EMPANADA,leerDouble("Ingrese el precio de empanadas"));
-        Plato.precios.put(TipoPlato.PAPAS,leerDouble("Ingrese el precio de papas fritas"));
-        Plato.precios.put(TipoPlato.CHURROS,leerDouble("Ingrese el precio de  churros"));
-        Plato.precios.put(TipoPlato.PIZZA,leerDouble("Ingrese el precio de pizza"));
-        Plato.precios.put(TipoPlato.HUMITA,leerDouble("Ingrese el precio de humitas"));
+		Plato.precios[0]=leerDouble("Ingrese el precio de empanadas");
+		Plato.precios[1]=leerDouble("Ingrese el precio de las papas fritas");
+		Plato.precios[2]=leerDouble("Ingrese el precio de churros");
+		Plato.precios[3]=leerDouble("Ingrese el precio de pizza");
+		Plato.precios[4]=leerDouble("Ingrese el precio de Humita");
 	}
 
 	public static boolean agregarNuevoProducto(){

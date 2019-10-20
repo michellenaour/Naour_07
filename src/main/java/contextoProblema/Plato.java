@@ -8,13 +8,21 @@ public class Plato {
 
 	private TipoPlato tipoPlato;
 	private double precio;
+	public static double[] precios = {0,0,0,0,0};
 
 	public Plato(){
+		this.tipoPlato = ;
+		this.precio=0;
 	}
 
 	public Plato(TipoPlato tipoPlato,double precio){
 		this.tipoPlato = tipoPlato;
-		this.precio=precio;
+		if(tipoPlato==TipoPlato.EMPANADA){this.precio=precios[0];}
+		if(tipoPlato==TipoPlato.PAPAS){this.precio=precios[1];}
+		if(tipoPlato==TipoPlato.CHURROS){this.precio=precios[2];}
+		if(tipoPlato==TipoPlato.PIZZA){this.precio=precios[3];}
+		if(tipoPlato==TipoPlato.HUMITA){this.precio=precios[4];}
+		else {this.precio=0;}
 	}
 
 	public TipoPlato getTipoPlato() {

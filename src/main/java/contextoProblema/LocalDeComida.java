@@ -13,15 +13,15 @@ public class LocalDeComida {
 	public static void nuevaVenta() throws IOException {
 		ArrayList<Plato> consumo= agregarPlatos();
 		Boleta boleta=crearNuevaBoleta(consumo);
-		guardarBoletaEnArchivo(boleta.getArchivo(),boleta);
-		mostarBoleta(boleta.getArchivo());
+		guardarBoletaEnArchivo("boletas.csv",boleta);
+		Menu.mostrarBoleta(boleta);
 	}
 
 	public static String mostrarBoletas(){
 		String textoBoletas="";
 		for( int i=0; i< boletas.size();i++){
 			Boleta bolet= boletas.get(i);
-			textoBoletas= textoBoletas+ mostarBoleta(bolet.getArchivo()+"\n");
+			textoBoletas= textoBoletas+ bolet.atexto()+"\n";
 		}
 		return textoBoletas;
 	}
@@ -32,14 +32,12 @@ public class LocalDeComida {
 		boleta.setFecha(Calendar.getInstance());
 		boleta.setConsumo(consumo);
 		boleta.setTotal(calcularTotal(consumo) );
-		boleta.setArchivo(crearNuevoPath(boleta.getID()));
 		boletas.add(boleta);
 		return boleta;
 	}
 
 	private static void guardarBoletaEnArchivo(String path, Boleta boleta) throws IOException {
-		GestorArchivo.crearNuevoArchivo(boleta.getArchivo());
-		GestorArchivo.guardarBoleta(boleta,boleta.getArchivo());
+		GestorArchivo.guardarBoleta(boleta,"boletas.csv");
 	}
 
 	private static String crearNuevoPath(int ID){

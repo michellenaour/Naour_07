@@ -11,7 +11,7 @@ public class Plato {
 	public static double[] precios = {0,0,0,0,0};
 
 	public Plato(){
-		this.tipoPlato = ;
+		this.tipoPlato =TipoPlato.EMPANADA;
 		this.precio=0;
 	}
 

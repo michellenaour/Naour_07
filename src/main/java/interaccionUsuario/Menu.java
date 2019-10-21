@@ -1,8 +1,10 @@
 package interaccionUsuario;
 
+import contextoProblema.Boleta;
 import contextoProblema.LocalDeComida;
 import contextoProblema.Plato;
 import contextoProblema.TipoPlato;
+import datos.GestorArchivo;
 
 import java.io.IOException;
 import java.util.InputMismatchException;
@@ -13,6 +15,7 @@ public class Menu {
 	static Scanner teclado=new Scanner(System.in);
 
 	public static void menuPrincipal() throws IOException {
+		GestorArchivo.crearNuevoArchivo("boletas.csv");
 		EstablecerPrecios();
 		mostrarMenu();
 		int opcion = leerOpcion();
@@ -59,7 +62,15 @@ public class Menu {
 			if (!flag){System.out.println("Error! el plato que ingresó no se encuentra en el menú");}
 		}
 
-		return TipoPlato.valueOf(Tplato);
+		TipoPlato[] tipos= TipoPlato.values();
+		for(int i=0; i<tipos.length;i++){
+			if(tipos[i].getTipoPlato().equals(Tplato)){
+				System.out.println(tipos[i]);
+				return tipos[i];
+			}
+		}
+
+		return null;
 	}
 
 	private static boolean validarTipoPlato(String tp){
@@ -86,6 +97,7 @@ public class Menu {
 		}
 		return opcion;
 	}
+
 	private static int leerInt(String mensaje){
 		int num;
 		System.out.println( mensaje);
@@ -102,6 +114,7 @@ public class Menu {
 		while(num<0);
 		return num;
 	}
+
 	private static double leerDouble(String txt) {
 		System.out.println(txt);
 		while (!teclado.hasNextDouble()) {
@@ -125,9 +138,9 @@ public class Menu {
 	public static boolean agregarNuevoProducto(){
 	    String respuesta= leerRespuesta();
 	    if(respuesta.equals("si")|| respuesta.equals("SI")||respuesta.equals("Si")){
-	        return true;
+	        return false;
         }
-	    return false;
+	    return true;
     }
 
     private static String leerRespuesta(){
@@ -146,4 +159,5 @@ public class Menu {
 	    return false;
     }
 
+    public static void mostrarBoleta(Boleta boleta){System.out.println(boleta.atexto());}
 }

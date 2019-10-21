@@ -8,16 +8,7 @@ public class Boleta {
 	private int ID;
 	private double total;
 	private ArrayList<Plato> consumo;
-	private String archivo;
 
-
-	public String getArchivo() {
-		return archivo;
-	}
-
-	public void setArchivo(String archivo) {
-		this.archivo = archivo;
-	}
 
 	public double getTotal() {
 		return total;
@@ -39,6 +30,13 @@ public class Boleta {
 		return consumo;
 	}
 
+	public String ConsumoTostring(ArrayList<Plato> consumo){
+		String t="";
+		for (int i=0; i<consumo.size();i++){
+			t=t+consumo.get(i).getTipoPlato();;
+		}
+		return t;
+	}
 	public int getID() {
 		return ID;
 	}
@@ -56,7 +54,6 @@ public class Boleta {
 		this.ID=0;
 		this.total=0;
 		this.consumo = new ArrayList<Plato>();
-		this.archivo ="";
 	}
 
 	/**
@@ -65,12 +62,11 @@ public class Boleta {
 	 * @param ID
 	 * @param total
 	 */
-	public Boleta(Calendar fecha, int ID, int total, ArrayList<Plato> consumo, String archivo) {
+	public Boleta(Calendar fecha, int ID, int total, ArrayList<Plato> consumo) {
 		this.fecha=fecha;
 		this.ID=ID;
 		this.total=total;
 		this.consumo = consumo;
-		this.archivo= archivo;
 	}
 
 	public String atexto(){
@@ -98,4 +94,6 @@ public class Boleta {
 		}
 		return consumoStr;
 	}
+
+
 }

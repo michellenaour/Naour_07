@@ -15,14 +15,22 @@ public class Plato {
 		this.precio=0;
 	}
 
-	public Plato(TipoPlato tipoPlato,double precio){
+	public Plato(TipoPlato tipoPlato){
 		this.tipoPlato = tipoPlato;
 		if(tipoPlato==TipoPlato.EMPANADA){this.precio=precios[0];}
-		if(tipoPlato==TipoPlato.PAPAS){this.precio=precios[1];}
-		if(tipoPlato==TipoPlato.CHURROS){this.precio=precios[2];}
-		if(tipoPlato==TipoPlato.PIZZA){this.precio=precios[3];}
-		if(tipoPlato==TipoPlato.HUMITA){this.precio=precios[4];}
-		else {this.precio=0;}
+		else {
+			if(tipoPlato==TipoPlato.PAPAS){this.precio=precios[1];}
+			else{
+				if(tipoPlato==TipoPlato.CHURROS){this.precio=precios[2];}
+				else{
+					if(tipoPlato==TipoPlato.PIZZA){this.precio=precios[3];}
+					else{
+						if(tipoPlato==TipoPlato.HUMITA){this.precio=precios[4];}
+						else {this.precio=0;}
+					}
+				}
+			}
+		}
 	}
 
 	public TipoPlato getTipoPlato() {
@@ -37,9 +45,7 @@ public class Plato {
 		return precio;
 	}
 
-	public void setPrecio(double precio) {
-		this.precio = precio;
-	}
+
 
 
 

@@ -27,9 +27,9 @@ public class GestorArchivo {
     }
 
     public static void guardarBoleta(Boleta boleta, String nombreArchivo) throws IOException {
-        
+
         try (FileWriter file = new FileWriter(nombreArchivo)) {
-            file.write(boleta.getID()+","+boleta.getFecha()+","+boleta.ConsumoTostring(boleta.getConsumo())+","+boleta.getTotal());
+            file.write(boleta.getID()+","+boleta.getFecha().getTime()+","+boleta.ConsumoAtexto(boleta.getConsumo())+","+boleta.getTotal());
             file.flush();
         } catch (IOException e) {
             e.printStackTrace();
@@ -43,27 +43,6 @@ public class GestorArchivo {
             textoBoleta= textoBoleta+scan.nextLine()+"\n";
         }
        return  textoBoleta;
-    }
-    public static void openFile(){
-        try{
-            scan = new Scanner(new File("boleta.txt"));
-        }
-        catch(Exception e){
-            System.out.println("No se pudo encontrar le archivo");
-        }
-    }
-    public static void readFile(){
-        while(scan.hasNext()){
-            System.out.print( scan.nextLine()+"\n");
-        }
-    }
-    public static void writeatext (int sala, int precioEntrada, int combo,int n) {
-
-        try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("boleta"+n+".txt"));
-            out.write("                        Pelicula Sala: "+sala);
-            out.close();
-        } catch (IOException e) {}
     }
 
 

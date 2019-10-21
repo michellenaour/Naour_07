@@ -30,10 +30,10 @@ public class Boleta {
 		return consumo;
 	}
 
-	public String ConsumoTostring(ArrayList<Plato> consumo){
+	public String ConsumoAtexto(ArrayList<Plato> consumo){
 		String t="";
 		for (int i=0; i<consumo.size();i++){
-			t=t+consumo.get(i).getTipoPlato();;
+			t=t+consumo.get(i).getTipoPlato()+",";
 		}
 		return t;
 	}
@@ -83,9 +83,8 @@ public class Boleta {
 
 	private String consumoToString(){
 		String consumoStr="";
-		Plato plato=new Plato();
 		for (int i=0; i<consumo.size();i++){
-			plato=consumo.get(i);
+			Plato plato=consumo.get(i);
 			consumoStr=consumoStr+("   "+plato.getTipoPlato().toString());
 			for (int j=0; j<35-plato.getTipoPlato().toString().length();j++){
 				consumoStr=consumoStr+("-");

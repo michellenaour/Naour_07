@@ -19,8 +19,7 @@ public class BoletaTest {
 
     @Test
     public void testToString() {
-        Plato plato1=new Plato(TipoPlato.PIZZA,2000);
-        Plato plato2=new Plato(TipoPlato.EMPANADA,1000);
+
         Boleta boleta=new Boleta();
         boleta.setTotal(3000);
         System.out.println(boleta.toString());

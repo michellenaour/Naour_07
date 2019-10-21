@@ -40,25 +40,18 @@ public class LocalDeComida {
 		GestorArchivo.guardarBoleta(boleta,"boletas.csv");
 	}
 
-	private static String crearNuevoPath(int ID){
-		return "boleta"+ID+".csv";
-	}
 
 	private static ArrayList<Plato> agregarPlatos(){
 		ArrayList<Plato> consumo=new ArrayList<>();
 		boolean respuesta=false;
 		while (!respuesta){
-			Plato plato =new Plato();
-			plato.setTipoPlato(Menu.ingresarTipoPlato());
-			plato.setPrecio(100);
+			Plato plato =new Plato(Menu.ingresarTipoPlato());
+			consumo.add(plato);
 			respuesta=Menu.agregarNuevoProducto();
 		}
 		return consumo;
 	}
 
-	private static String mostarBoleta(String path) {
-		return GestorArchivo.LeerArchivo(path);
-	}
 
 	private static double calcularTotal(ArrayList<Plato> consumo) {
 		double total = 0;

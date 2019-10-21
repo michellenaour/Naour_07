@@ -14,16 +14,21 @@ import java.util.Scanner;
 public class Menu {
 	static Scanner teclado=new Scanner(System.in);
 
-	public static void menuPrincipal() throws IOException {
+	public static void PreMenu() throws IOException {
 		GestorArchivo.crearNuevoArchivo("boletas.csv");
 		EstablecerPrecios();
+		menuPrincipal();
+	}
+
+	public static void menuPrincipal() throws IOException{
 		mostrarMenu();
+
 		int opcion = leerOpcion();
 		seleccionMenu(opcion);
 	}
 
 	private static void mostrarMenu() {
-		System.out.println("--------------Menu--------------");
+		System.out.println("\n\n--------------Menu--------------");
 		System.out.println("  ( 1 ).  Crear una nueva Boleta (nueva venta)");
 		System.out.println("  ( 2 ).  Ver todas las Boletas emitidas");
 		System.out.println("  ( 3 ).  Salir");
@@ -53,16 +58,20 @@ public class Menu {
 	}
 
 	public static TipoPlato ingresarTipoPlato(){
+		TipoPlato[] tipos= TipoPlato.values();
 		String Tplato="";
 		boolean flag = false;
 		while (!flag){
 		    System.out.println("Ingrese el Plato");
+			for(int i=0; i<tipos.length;i++){
+				System.out.println("    -."+tipos[i].getTipoPlato());
+			}
 			Tplato=teclado.next();
 			flag=validarTipoPlato(Tplato);
 			if (!flag){System.out.println("Error! el plato que ingresó no se encuentra en el menú");}
 		}
 
-		TipoPlato[] tipos= TipoPlato.values();
+
 		for(int i=0; i<tipos.length;i++){
 			if(tipos[i].getTipoPlato().equals(Tplato)){
 				System.out.println(tipos[i]);
@@ -156,6 +165,7 @@ public class Menu {
 
     private static boolean validarRespuesta(String res){
 	    if(res.equals("si")||res.equals("SI")||res.equals("Si")||res.equals("NO")||res.equals("no")||res.equals("No")){return  true;}
+	    System.out.println("Error! Ingrese valores validos");
 	    return false;
     }
 

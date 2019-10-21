@@ -40,7 +40,6 @@ public class LocalDeComida {
 		GestorArchivo.guardarBoleta(boleta,"boletas.csv");
 	}
 
-
 	private static ArrayList<Plato> agregarPlatos(){
 		ArrayList<Plato> consumo=new ArrayList<>();
 		boolean respuesta=false;
@@ -51,7 +50,6 @@ public class LocalDeComida {
 		}
 		return consumo;
 	}
-
 
 	private static double calcularTotal(ArrayList<Plato> consumo) {
 		double total = 0;
